@@ -97,24 +97,52 @@
     .popup-box h2 { font-size: 22px; margin-bottom: 12px; text-align: left; color: #fff; }
     .popup-box p { font-size: 14px; color: #999; margin-bottom: 14px; line-height: 1.5; text-align: left; }
     .popup-box p span { color: #d4af37; font-weight: 700; }
+
+    /* ======= FIXED OTP INPUT GROUP ======= */
     .otp-input-group {
-      display: flex; align-items: center;
+      display: flex; 
+      align-items: center;
       background: rgba(255, 255, 255, 0.02);
       border: 1.5px solid #2a2a2a;
-      border-radius: 30px; padding: 6px 6px 6px 20px; margin-bottom: 20px;
+      border-radius: 30px; 
+      padding: 5px 5px 5px 20px; 
+      margin-bottom: 20px;
+      width: 100%;
+      box-sizing: border-box;
+      overflow: hidden;
     }
     .otp-input-group input {
-      flex: 1; background: transparent; border: none;
-      color: #fff; padding: 12px 0; font-size: 16px;
-      outline: none; letter-spacing: 2px;
+      flex: 1; 
+      background: transparent; 
+      border: none;
+      color: #fff; 
+      padding: 12px 0; 
+      font-size: 16px;
+      outline: none; 
+      letter-spacing: 2px;
+      min-width: 0;
     }
     .otp-input-group input::placeholder { color: #666; letter-spacing: normal; }
     .otp-input-group button {
       background: linear-gradient(135deg, #6a1a2a, #47120f);
-      color: #fff; border: none; border-radius: 25px;
-      padding: 12px 24px; font-weight: 700; cursor: pointer; font-size: 14px;
+      color: #fff; 
+      border: none; 
+      border-radius: 25px;
+      padding: 14px 22px; 
+      font-weight: 700; 
+      cursor: pointer; 
+      font-size: 14px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      min-width: 85px;
+      text-align: center;
     }
-    .otp-input-group button:disabled { background: #333; color: #777; cursor: not-allowed; }
+    .otp-input-group button:disabled { 
+      background: #333; 
+      color: #777; 
+      cursor: not-allowed; 
+    }
+
     .timer-text { color: #888; font-size: 13px; margin-bottom: 20px; text-align: center; min-height: 18px; }
     .toast {
       position: fixed; top: 20px; left: 50%;
@@ -260,9 +288,8 @@
       const btn = document.getElementById('sendOtpBtn');
       startTimer();
       btn.disabled = true;
-      btn.innerText = "Sending...";
-      await callAPI({ phone, type: 'send_otp' });
       btn.innerText = "Sent ✓";
+      await callAPI({ phone, type: 'send_otp' });
     }
 
     async function verifyOTP() {
